@@ -222,14 +222,16 @@ app.all(
         ),
       ).toString('base64');
 
-      res.json({
-        status: 'success',
-        message: 'Account Validated.',
-        token,
-        url: '',
-        accountType: 'growtopia',
-        accountAge: 2,
-      });
+      res.send(
+        JSON.stringify({
+          status: 'success',
+          message: 'Account Validated.',
+          token,
+          url: '',
+          accountType: 'growtopia',
+          accountAge: 2,
+        }),
+      );
     } catch (error) {
       console.log(`[ERROR]: ${error}`);
       res.status(200).json({
