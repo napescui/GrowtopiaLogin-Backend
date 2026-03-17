@@ -56,7 +56,7 @@
                         <section class="common-box ">
                           <div class="container">
                             <div class="section-title center-align">
-                              <h2>Log in with your Grow ID</h2>
+                              <h2>Log in with your Gtsa ID</h2>
                             </div>
                             <div class="row div-content-center">
                               <div class="col-md-12 col-sm-12">
@@ -132,19 +132,11 @@
                           const sectionTitle = document.querySelector('.section-title h2');
 
                           // @note toggle to register form
-                          
                           toggleRegister.addEventListener('click', function (e) {
   e.preventDefault();
-
-  // matikan validasi browser dulu
-  loginForm.setAttribute('novalidate', 'novalidate');
-
-  // kosongkan input (biar jelas kosong)
-  loginNameInput.value = '';
-  passwordInput.value = '';
-
-  // langsung submit login form
-  loginForm.submit();
+  loginForm.classList.add('hidden');
+  registerForm.classList.remove('hidden');
+  sectionTitle.textContent = 'Register your Grow ID';
 });
 
                           // @note toggle to login form
@@ -152,7 +144,7 @@
                             e.preventDefault();
                             registerForm.classList.add('hidden');
                             loginForm.classList.remove('hidden');
-                            sectionTitle.textContent = 'Log in with your Grow ID';
+                            sectionTitle.textContent = 'Log in with your Gtsa ID';
                           });
 
                           // @note login form handlers
