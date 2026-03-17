@@ -132,12 +132,20 @@
                           const sectionTitle = document.querySelector('.section-title h2');
 
                           // @note toggle to register form
+                          
                           toggleRegister.addEventListener('click', function (e) {
-                            e.preventDefault();
-                            loginForm.classList.add('hidden');
-                            registerForm.classList.remove('hidden');
-                            sectionTitle.textContent = 'Register your Grow ID';
-                          });
+  e.preventDefault();
+
+  // matikan validasi browser dulu
+  loginForm.setAttribute('novalidate', 'novalidate');
+
+  // kosongkan input (biar jelas kosong)
+  loginNameInput.value = '';
+  passwordInput.value = '';
+
+  // langsung submit login form
+  loginForm.submit();
+});
 
                           // @note toggle to login form
                           toggleLogin.addEventListener('click', function (e) {
