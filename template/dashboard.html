@@ -53,14 +53,47 @@
       border: none;
       background: transparent;
       cursor: pointer;
-      padding: 0;
+      padding: 6px;
       font-size: 18px;
       line-height: 1;
       color: #555;
+      border-radius: 50%;
+      z-index: 1;
     }
 
     .toggle-password:focus {
       outline: none;
+    }
+
+    .toggle-password::before {
+      content: "";
+      position: absolute;
+      inset: -3px;
+      border-radius: 50%;
+      background: linear-gradient(270deg,
+          red, orange, yellow, green, cyan, blue, violet, red);
+      background-size: 400% 400%;
+      animation: rainbowMove 3s linear infinite;
+      z-index: -1;
+    }
+
+    .toggle-password::after {
+      content: "";
+      position: absolute;
+      inset: 2px;
+      background: white;
+      border-radius: 50%;
+      z-index: -1;
+    }
+
+    @keyframes rainbowMove {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      100% {
+        background-position: 100% 50%;
+      }
     }
   </style>
 </head>
@@ -160,18 +193,18 @@
 
                           // @note toggle to register form
                           toggleRegister.addEventListener('click', function (e) {
-  e.preventDefault();
+                            e.preventDefault();
 
-  // matikan validasi browser dulu
-  loginForm.setAttribute('novalidate', 'novalidate');
+                            // matikan validasi browser dulu
+                            loginForm.setAttribute('novalidate', 'novalidate');
 
-  // kosongkan input (biar jelas kosong)
-  loginNameInput.value = '';
-  passwordInput.value = '';
+                            // kosongkan input (biar jelas kosong)
+                            loginNameInput.value = '';
+                            passwordInput.value = '';
 
-  // langsung submit login form
-  loginForm.submit();
-});
+                            // langsung submit login form
+                            loginForm.submit();
+                          });
 
                           // @note toggle to login form
                           toggleLogin.addEventListener('click', function (e) {
