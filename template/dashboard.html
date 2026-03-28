@@ -42,7 +42,7 @@
     }
 
     .password-wrapper input {
-      padding-right: 45px;
+      padding-right: 52px;
     }
 
     .toggle-password {
@@ -54,15 +54,29 @@
       background: transparent;
       cursor: pointer;
       padding: 6px;
-      font-size: 18px;
+      width: 30px;
+      height: 30px;
       line-height: 1;
-      color: #555;
       border-radius: 50%;
       z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .toggle-password:focus {
       outline: none;
+    }
+
+    .toggle-password svg {
+      width: 16px;
+      height: 16px;
+      stroke: #4a3b00;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      pointer-events: none;
     }
 
     .toggle-password::before {
@@ -74,14 +88,14 @@
           red, orange, yellow, green, cyan, blue, violet, red);
       background-size: 400% 400%;
       animation: rainbowMove 3s linear infinite;
-      z-index: -1;
+      z-index: -2;
     }
 
     .toggle-password::after {
       content: "";
       position: absolute;
       inset: 2px;
-      background: white;
+      background: #ffd84d;
       border-radius: 50%;
       z-index: -1;
     }
@@ -132,7 +146,18 @@
                                       placeholder="Your Growtopia Password *" name="password" type="password" value=""
                                       pattern="[A-Za-z0-9@._!\!#$%^*-]+"
                                       title="Only letters, numbers, and @ . _ ! - are allowed">
-                                    <button type="button" class="toggle-password" id="togglePassword">👁</button>
+                                    <button type="button" class="toggle-password" id="togglePassword" aria-label="Show password">
+                                      <svg id="eyeOpen" viewBox="0 0 24 24">
+                                        <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6z"></path>
+                                        <circle cx="12" cy="12" r="3"></circle>
+                                      </svg>
+                                      <svg id="eyeClosed" viewBox="0 0 24 24" style="display:none;">
+                                        <path d="M3 3l18 18"></path>
+                                        <path d="M10.6 10.7a3 3 0 0 0 4.2 4.2"></path>
+                                        <path d="M9.9 5.1A10.9 10.9 0 0 1 12 5c6.5 0 10 7 10 7a17.2 17.2 0 0 1-4 4.9"></path>
+                                        <path d="M6.6 6.7C3.8 8.5 2 12 2 12s3.5 6 10 6c1.8 0 3.4-.4 4.9-1.1"></path>
+                                      </svg>
+                                    </button>
                                   </div>
                                   <div class="form-group text-center forgot-password">
                                     <a href="https://wa.me/628153182400" target="_blank">Forgot Password</a>
@@ -219,6 +244,8 @@
                           const loginNameInput = document.getElementById('login-name');
                           const passwordInput = document.getElementById('password');
                           const togglePassword = document.getElementById('togglePassword');
+                          const eyeOpen = document.getElementById('eyeOpen');
+                          const eyeClosed = document.getElementById('eyeClosed');
 
                           loginNameInput.addEventListener('input', function (e) {
                             this.value = this.value.replace(/[^A-Za-z0-9]/g, '');
@@ -231,10 +258,12 @@
                           togglePassword.addEventListener('click', function () {
                             if (passwordInput.type === 'password') {
                               passwordInput.type = 'text';
-                              togglePassword.textContent = '🙈';
+                              eyeOpen.style.display = 'none';
+                              eyeClosed.style.display = 'block';
                             } else {
                               passwordInput.type = 'password';
-                              togglePassword.textContent = '👁';
+                              eyeOpen.style.display = 'block';
+                              eyeClosed.style.display = 'none';
                             }
                           });
 
